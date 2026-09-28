@@ -1,0 +1,84 @@
+---
+#################################################
+# Download WordPress
+#################################################
+
+- name: Download latest WordPress
+  ansible.builtin.get_url:
+    url: https://wordpress.org/latest.tar.gz
+    dest: /tmp/latest.tar.gz
+    mode: "0644"
+
+#################################################
+# Extract WordPress
+#################################################
+
+- name: Extract WordPress
+  ansible.builtin.unarchive:
+    src: /tmp/latest.tar.gz
+    dest: /tmp
+    remote_src: true
+
+#################################################
+# Copy WordPress Files
+#################################################
+
+- name: Copy WordPress files
+  ansible.builtin.copy:
+    src: /tmp/wordpress/
+    dest: /var/www/html/
+    remote_src: true
+    owner: www-data
+    group: www-data
+    mode: preserve
+
+#################################################
+# Set Ownership
+#################################################
+
+- name: Set WordPress ownership
+  ansible.builtin.file:
+    path: /var/www/html
+    owner: www-data
+    group: www-data
+    recurse: true
+
+#################################################
+# Set Permissions
+#################################################
+
+- name: Set WordPress permissions
+  ansible.builtin.file:
+    path: /var/www/html
+    mode: "0755"
+    recurse: true
+
+#################################################
+# Configure WordPress
+#################################################
+
+- name: Deploy wp-config.php
+  ansible.builtin.template:
+    src: wp-config.php.j2
+    dest: /var/www/html/wp-config.php
+    owner: www-data
+    group: www-data
+    mode: "0644"
+
+#################################################
+# Restart Apache
+#################################################
+
+- name: Restart Apache
+  ansible.builtin.service:
+    name: apache2
+    state: restarted
+
+#################################################
+# Remove Apache Default Page
+#################################################
+
+- name: Remove Apache default index page
+  ansible.builtin.file:
+    path: /var/www/html/index.html
+    state: absent
