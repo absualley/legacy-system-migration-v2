@@ -21,6 +21,6 @@ mysql_root_password: ChangeMe123!
 
 wordpress_database: wordpress_db
 
-wordpress_user: wordpress_user
+wordpress_db_user: wordpress_user
 
-wordpress_password: WordPress123!
+wordpress_db_password: WordPress123!

@@ -1,0 +1,20 @@
+---
+#################################################
+# Install MySQL
+#################################################
+
+- name: Install MySQL Server
+  ansible.builtin.apt:
+    name: mysql-server
+    state: present
+    update_cache: true
+
+#################################################
+# Enable and Start MySQL
+#################################################
+
+- name: Ensure MySQL service is enabled and running
+  ansible.builtin.service:
+    name: mysql
+    enabled: true
+    state: started
