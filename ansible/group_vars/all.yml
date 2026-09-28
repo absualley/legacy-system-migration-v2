@@ -1,7 +1,7 @@
 ---
 project_name: legacy-system-migration-v2
 
-environment: dev
+deployment_environment: dev
 
 web_server: apache2
 

@@ -1,0 +1,36 @@
+---
+#################################################
+# Update APT Cache
+#################################################
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+#################################################
+# Install Apache
+#################################################
+
+- name: Install Apache
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+
+#################################################
+# Enable Apache
+#################################################
+
+- name: Enable Apache
+  ansible.builtin.service:
+    name: apache2
+    enabled: true
+
+#################################################
+# Start Apache
+#################################################
+
+- name: Start Apache
+  ansible.builtin.service:
+    name: apache2
+    state: started
