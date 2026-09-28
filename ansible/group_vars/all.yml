@@ -1,0 +1,26 @@
+---
+project_name: legacy-system-migration-v2
+
+environment: dev
+
+web_server: apache2
+
+php_packages:
+  - php
+  - libapache2-mod-php
+  - php-mysql
+  - php-cli
+  - php-common
+  - php-curl
+  - php-xml
+  - php-mbstring
+  - php-zip
+  - php-gd
+
+mysql_root_password: ChangeMe123!
+
+wordpress_database: wordpress_db
+
+wordpress_user: wordpress_user
+
+wordpress_password: WordPress123!

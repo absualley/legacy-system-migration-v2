@@ -1,0 +1,10 @@
+---
+- name: Configure Legacy WordPress Server
+  hosts: webservers
+  become: true
+
+  roles:
+    - apache
+    - php
+    - mysql
+    - wordpress
