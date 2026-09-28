@@ -53,3 +53,15 @@ variable "instance_type" {
   default = "t3.micro"
 
 }
+
+#################################################
+# EC2 Key Pair
+#################################################
+
+variable "key_name" {
+
+  description = "AWS EC2 Key Pair"
+
+  type = string
+
+}
